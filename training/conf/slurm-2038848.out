@@ -1,0 +1,38 @@
+🚀 Starting training job...
+⏱️ Training start time:
+2025-06-28 00:50:23.208984
+/home/s2678328/miniconda3/envs/mistral/bin/python
+|=>> 06/28 [00:51:18] - mistral - INFO :: Starting Run: babylm_shuffle_control_100M_randinit_seed41...
+|=>> 06/28 [00:51:18] - mistral - INFO :: Setting Random Seed to 41!
+|=>> 06/28 [00:51:18] - mistral - INFO :: Building Tokenize and Initializing `gpt2-small` via AutoModel/AutoConfig...
+|=>> 06/28 [00:51:18] - mistral - INFO :: Using Configs For Model From: /home/s2678328/mistral_impossible/conf/models/gpt2-small-50257.json ...
+|=>> 06/28 [00:51:18] - mistral.models.auto - INFO :: Building Hugging Face GPT2Config from provided configs: {'activation_function': 'gelu_new', 'architectures': ['GPT2LMHeadModel'], 'attn_pdrop': 0.1, 'bos_token_id': 4, 'embd_pdrop': 0.1, 'eos_token_id': 5, 'initializer_range': 0.02, 'layer_norm_epsilon': 1e-05, 'model_type': 'gpt2', 'n_ctx': 1024, 'n_embd': 768, 'n_head': 12, 'n_inner': None, 'n_layer': 12, 'n_positions': 1024, 'reorder_and_upcast_attn': True, 'resid_pdrop': 0.1, 'scale_attn_by_inverse_layer_idx': True, 'scale_attn_weights': True, 'summary_activation': None, 'summary_first_dropout': 0.2, 'summary_proj_to_labels': True, 'summary_type': 'cls_index', 'summary_use_proj': True, 'task_specific_params': {'text-generation': {'do_sample': True, 'max_length': 1024}}, 'torch_dtype': 'float32', 'transformers_version': '4.35.2', 'use_cache': False, 'vocab_size': 50257} ...
+|=>> 06/28 [00:51:18] - mistral.models.auto - INFO :: Fetching Hugging Face [Fast] AutoTokenizer for Model: `gpt2`...
+|=>> 06/28 [00:51:18] - mistral.models.auto - INFO :: Using a Pretokenized Dataset
+|=>> 06/28 [00:51:18] - mistral.models.auto - INFO :: Initializing Custom GPT-2 Model from Configuration: `gpt2`...
+|=>> 06/28 [00:51:29] - mistral - INFO :: Setting Training Arguments from Quinfig...
+|=>> 06/28 [00:51:29] - mistral.args.training - INFO :: Setting Gradient Accumulation Steps = `256` [BSZ: 512 World Size: 1 Device BSZ: 2]
+|=>> 06/28 [00:51:29] - mistral - INFO :: Downloading and Preprocessing Dataset `/home/s2678328/mission-impossible_fork/training/babylm_dataset.py`...
+[*] Mercury :: Launching =>>> 🚀 🙈 🚀
+	=>> "This wind, it is not an ending..." (Robert Jordan - A Memory of Light)
+
+(quinine) Overriding parameters in /home/s2678328/mistral_impossible/conf/train_shuffle_control_100M_randinit_seed41.yaml from command line (___ is unspecified).
+> (nnodes): -1 --> 1
+> (nproc_per_node): -1 --> 1
+> (training_arguments.fp16): ___ --> True
+> (training_arguments.per_device_train_batch_size): 8 --> 2
+> (training_arguments.warmup_steps): 4000 --> 300
+> (training_arguments.max_steps): 400000 --> 3000
+Traceback (most recent call last):
+  File "train.py", line 265, in <module>
+    train()
+  File "train.py", line 123, in train
+    custom_eval_datasets, lm_dataset = load_datasets(quinfig, paths, tokenizer, overwatch)
+  File "train.py", line 195, in load_datasets
+    lm_dataset = build_indexed_dataset(
+  File "/home/s2678328/mistral_impossible/src/corpora/auto.py", line 58, in build_indexed_dataset
+    assert file_type in ["json", "txt", "csv"]
+AssertionError
+⏱️ Training end time:
+2025-06-28 00:51:34.268534
+✅ Training finished

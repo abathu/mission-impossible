@@ -2,7 +2,7 @@
 #   Configuration for altered babylm-dataset
 ---
 dataset:
-    id: /nlp/scr/kallini/llms-in-llms/training/babylm_dataset.py
+    id:  /home/s2678328/mission-impossible_fork/training/babylm_dataset.py #/nlp/scr/kallini/llms-in-llms/training/babylm_dataset.py
     name: babylm_{{ perturbation }}_{{ train_set }}_seed{{ seed }}
     validation_ratio: null
 

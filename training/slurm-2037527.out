@@ -1,0 +1,40 @@
+
+-------------------------------------------------------------------------------
+Arguments
+-------------------------------------------------------------------------------
+
+Perturbation type: shuffle
+Train set: 100M
+Random seed: 41
+Paren pretrained model: randinit
+No pos encodings: 
+Mistral path: /home/s2678328/mistral_impossible
+
+-------------------------------------------------------------------------------
+Generating yaml files for mistral training
+-------------------------------------------------------------------------------
+
+python3 generate_yaml.py shuffle 100M 41 randinit
+usage: Generate yaml for training [-h] [-np]
+                                  [{shuffle_control,shuffle_nondeterministic,shuffle_deterministic21,shuffle_deterministic57,shuffle_deterministic84,shuffle_local3,shuffle_local5,shuffle_local10,shuffle_even_odd,reverse_control,reverse_partial,reverse_full,hop_control,hop_tokens4,hop_words4}]
+                                  [{100M,10M}] random_seed
+                                  [{CROSS,NEST,RAND,randinit}]
+Generate yaml for training: error: argument perturbation_type: invalid choice: 'shuffle' (choose from 'shuffle_control', 'shuffle_nondeterministic', 'shuffle_deterministic21', 'shuffle_deterministic57', 'shuffle_deterministic84', 'shuffle_local3', 'shuffle_local5', 'shuffle_local10', 'shuffle_even_odd', 'reverse_control', 'reverse_partial', 'reverse_full', 'hop_control', 'hop_tokens4', 'hop_words4')
+
+-------------------------------------------------------------------------------
+Copying config yaml files to mistral directory
+-------------------------------------------------------------------------------
+
+cp conf/babylm_shuffle_100M_randinit/seed41/dataset_shuffle_100M_seed41.yaml /home/s2678328/mistral_impossible/conf/datasets/dataset_shuffle_100M_seed41.yaml
+cp: cannot stat 'conf/babylm_shuffle_100M_randinit/seed41/dataset_shuffle_100M_seed41.yaml': No such file or directory
+
+cp conf/babylm_shuffle_100M_randinit/seed41/train_shuffle_100M_randinit_seed41.yaml /home/s2678328/mistral_impossible/conf/train_shuffle_100M_randinit_seed41.yaml
+cp: cannot stat 'conf/babylm_shuffle_100M_randinit/seed41/train_shuffle_100M_randinit_seed41.yaml': No such file or directory
+
+cp conf/babylm_shuffle_100M_randinit/gpt2-small-shuffle-randinit.yaml /home/s2678328/mistral_impossible/conf/models/gpt2-small-shuffle-randinit.yaml
+cp: cannot stat 'conf/babylm_shuffle_100M_randinit/gpt2-small-shuffle-randinit.yaml': No such file or directory
+
+-------------------------------------------------------------------------------
+Done!
+-------------------------------------------------------------------------------
+

@@ -1,0 +1,41 @@
+
+-------------------------------------------------------------------------------
+Arguments
+-------------------------------------------------------------------------------
+
+Perturbation type: shuffle
+Train set: 100M
+Random seed: 41
+Paren pretrained model: randinit
+No pos encodings: 
+Mistral path: /home/s2678328/mistral_impossible
+
+-------------------------------------------------------------------------------
+Generating yaml files for mistral training
+-------------------------------------------------------------------------------
+
+python3 generate_yaml.py shuffle 100M 41 randinit
+Traceback (most recent call last):
+  File "generate_yaml.py", line 9, in <module>
+    from utils import PERTURBATIONS, CHECKPOINT_WRITE_PATH, \
+  File "/home/s2678328/mission-impossible_fork/training/../utils.py", line 9, in <module>
+    from nltk.tree import ParentedTree
+ModuleNotFoundError: No module named 'nltk'
+
+-------------------------------------------------------------------------------
+Copying config yaml files to mistral directory
+-------------------------------------------------------------------------------
+
+cp conf/babylm_shuffle_100M_randinit/seed41/dataset_shuffle_100M_seed41.yaml /home/s2678328/mistral_impossible/conf/datasets/dataset_shuffle_100M_seed41.yaml
+cp: cannot stat 'conf/babylm_shuffle_100M_randinit/seed41/dataset_shuffle_100M_seed41.yaml': No such file or directory
+
+cp conf/babylm_shuffle_100M_randinit/seed41/train_shuffle_100M_randinit_seed41.yaml /home/s2678328/mistral_impossible/conf/train_shuffle_100M_randinit_seed41.yaml
+cp: cannot stat 'conf/babylm_shuffle_100M_randinit/seed41/train_shuffle_100M_randinit_seed41.yaml': No such file or directory
+
+cp conf/babylm_shuffle_100M_randinit/gpt2-small-shuffle-randinit.yaml /home/s2678328/mistral_impossible/conf/models/gpt2-small-shuffle-randinit.yaml
+cp: cannot stat 'conf/babylm_shuffle_100M_randinit/gpt2-small-shuffle-randinit.yaml': No such file or directory
+
+-------------------------------------------------------------------------------
+Done!
+-------------------------------------------------------------------------------
+

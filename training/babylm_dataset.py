@@ -13,7 +13,7 @@ logger = datasets.logging.get_logger(__name__)
 _DESCRIPTION = """\
     Pre-tokenized BabyLM HuggingFace dataset for verb perturbations.
 """
-_PERTURBED_DATA_PATH = "/nlp/scr3/nlp/llms-in-llms/babylm_data/babylm_data_perturbed"
+_PERTURBED_DATA_PATH ="/home/s2678328/" # "/nlp/scr3/nlp/llms-in-llms/babylm_data/babylm_data_perturbed"
 _PERTURBATIONS = ["hop_control", "hop_tokens4", "hop_words4",
                   "reverse_control", "reverse_partial", "reverse_full",
                   "shuffle_control", "shuffle_nondeterministic",
@@ -22,7 +22,7 @@ _PERTURBATIONS = ["hop_control", "hop_tokens4", "hop_words4",
                   "shuffle_even_odd"]
 _RANDOM_SEEDS = [0, 14, 41, 53, 96]
 _TRAIN_SETS = ["100M", "10M"]
-_EOS_TOKEN_ID = 50256
+_EOS_TOKEN_ID = 5
 
 
 class BabyConfig(datasets.BuilderConfig):

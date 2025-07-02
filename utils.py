@@ -30,9 +30,9 @@ GENRES = {
     "switchboard": "Switchboard Dialog Act Corpus",
     "wikipedia": "Wikipedia"
 }
-CHECKPOINT_WRITE_PATH = "/exports/eddie/scratch/s2678328/model_para"
-CHECKPOINT_READ_PATH = "/exports/eddie/scratch/s2678328/model_para"
-BABYLM_DATA_PATH = "/exports/eddie/scratch/s2678328/babyLM_data"
+CHECKPOINT_WRITE_PATH = "/home/s2678328/nlp/llms-in-llms/babylm_models"
+CHECKPOINT_READ_PATH = "/home/s2678328/nlp/llms-in-llms/babylm_models"
+BABYLM_DATA_PATH = "/home/s2678328/100M"
 MARKER_HOP_SING = "🅂"
 MARKER_HOP_PLUR = "🄿"
 MARKER_REV = "🅁"
@@ -67,8 +67,25 @@ def write_file(directory, filename, lines):
     f.close()
 
 
+# def get_gpt2_tokenizer_with_markers(marker_list):
+#     tokenizer = AutoTokenizer.from_pretrained("gpt2")
+
+#     # If no new markers to add, return normal tokenizer
+#     if len(marker_list) == 0:
+#         return tokenizer
+
+#     # Create tokens and return modified tokenizer
+#     new_tokens = []
+#     for marker in marker_list:
+#         new_tokens.append(AddedToken(marker, lstrip=True, rstrip=False))
+#     tokenizer.add_tokens(new_tokens)
+#     return tokenizer
+
+
 def get_gpt2_tokenizer_with_markers(marker_list):
-    tokenizer = AutoTokenizer.from_pretrained("gpt2")
+    # tokenizer = AutoTokenizer.from_pretrained("gpt2")
+    tokenizer = AutoTokenizer.from_pretrained("/home/s2678328/tokenizers/tokenzier_Russain/auto_tokenizer_auto")
+
 
     # If no new markers to add, return normal tokenizer
     if len(marker_list) == 0:

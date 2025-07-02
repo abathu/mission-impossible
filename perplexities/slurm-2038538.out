@@ -1,0 +1,33 @@
+Start 
+Traceback (most recent call last):
+  File "/home/s2678328/miniconda3/envs/impossible/lib/python3.10/site-packages/transformers/utils/hub.py", line 470, in cached_files
+    hf_hub_download(
+  File "/home/s2678328/miniconda3/envs/impossible/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 106, in _inner_fn
+    validate_repo_id(arg_value)
+  File "/home/s2678328/miniconda3/envs/impossible/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 154, in validate_repo_id
+    raise HFValidationError(
+huggingface_hub.errors.HFValidationError: Repo id must be in the form 'repo_name' or 'namespace/repo_name': '/home/s2678328/nlp/llms-in-llms/babylm_models/babylm_shuffle_control_100M_randinit/babylm_shuffle_control_100M_randinit_seed41/runs/babylm_shuffle_control_100M_randinit_seed41/checkpoint-3000/'. Use `repo_type` argument if needed.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/s2678328/mission-impossible_fork/perplexities/test_ppl.py", line 100, in <module>
+    model = GPT2LMHeadModel.from_pretrained(model_path, local_files_only=True).to(device)
+  File "/home/s2678328/miniconda3/envs/impossible/lib/python3.10/site-packages/transformers/modeling_utils.py", line 309, in _wrapper
+    return func(*args, **kwargs)
+  File "/home/s2678328/miniconda3/envs/impossible/lib/python3.10/site-packages/transformers/modeling_utils.py", line 4213, in from_pretrained
+    resolved_config_file = cached_file(
+  File "/home/s2678328/miniconda3/envs/impossible/lib/python3.10/site-packages/transformers/utils/hub.py", line 312, in cached_file
+    file = cached_files(path_or_repo_id=path_or_repo_id, filenames=[filename], **kwargs)
+  File "/home/s2678328/miniconda3/envs/impossible/lib/python3.10/site-packages/transformers/utils/hub.py", line 522, in cached_files
+    resolved_files = [
+  File "/home/s2678328/miniconda3/envs/impossible/lib/python3.10/site-packages/transformers/utils/hub.py", line 523, in <listcomp>
+    _get_cache_file_to_return(path_or_repo_id, filename, cache_dir, revision) for filename in full_filenames
+  File "/home/s2678328/miniconda3/envs/impossible/lib/python3.10/site-packages/transformers/utils/hub.py", line 140, in _get_cache_file_to_return
+    resolved_file = try_to_load_from_cache(path_or_repo_id, full_filename, cache_dir=cache_dir, revision=revision)
+  File "/home/s2678328/miniconda3/envs/impossible/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 106, in _inner_fn
+    validate_repo_id(arg_value)
+  File "/home/s2678328/miniconda3/envs/impossible/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 154, in validate_repo_id
+    raise HFValidationError(
+huggingface_hub.errors.HFValidationError: Repo id must be in the form 'repo_name' or 'namespace/repo_name': '/home/s2678328/nlp/llms-in-llms/babylm_models/babylm_shuffle_control_100M_randinit/babylm_shuffle_control_100M_randinit_seed41/runs/babylm_shuffle_control_100M_randinit_seed41/checkpoint-3000/'. Use `repo_type` argument if needed.
+DONE

@@ -2,8 +2,7 @@
 # prepare_training.sh
 # author: Julie Kallini
 
-readonly MISTRAL_PATH=/exports/eddie/scratch/s2678328/mistral
-
+readonly MISTRAL_PATH=/home/s2678328/mistral_impossible
 echo "
 -------------------------------------------------------------------------------
 Arguments

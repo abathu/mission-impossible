@@ -3,12 +3,13 @@
 
 # For importing utils
 import sys
-sys.path.append("..")
+# sys.path.append("..")
+sys.path.append("/home/s2678328/mission-impossible_fork")
 
 from transformers import GPT2LMHeadModel
 from gpt2_no_positional_encoding_model import GPT2NoPositionalEncodingLMHeadModel
 from utils import CHECKPOINT_READ_PATH, PERTURBATIONS, BABYLM_DATA_PATH, \
-    PAREN_MODELS, gpt2_original_tokenizer
+    PAREN_MODELS #, gpt2_original_tokenizer
 from tqdm import tqdm
 from glob import glob
 from numpy.random import default_rng
@@ -17,10 +18,16 @@ import torch
 import itertools
 import argparse
 import os
+import tokenizers
+from transformers import AutoTokenizer
 
 
 MAX_TRAINING_STEPS = 3000
 CHECKPOINTS = list(range(100, MAX_TRAINING_STEPS+1, 100))
+
+
+
+gpt2_original_tokenizer  =AutoTokenizer.from_pretrained("/home/s2678328/tokenizers/tokenzier_Russain/auto_tokenizer_auto",use_fast=True,)
 
 
 def create_attention_mask(token_lists):
@@ -85,12 +92,14 @@ if __name__ == "__main__":
                         nargs='?',
                         choices=PERTURBATIONS.keys(),
                         help='Perturbation function used to transform BabyLM dataset')
+    # possible value: shuffle_control 
     parser.add_argument('test_perturbation_type',
                         default='all',
                         const='all',
                         nargs='?',
                         choices=PERTURBATIONS.keys(),
                         help='Perturbation function used to transform test BabyLM dataset')
+    
     parser.add_argument('train_set',
                         default='all',
                         const='all',
@@ -104,8 +113,11 @@ if __name__ == "__main__":
                         nargs='?',
                         choices=list(PAREN_MODELS.keys()) + ["randinit"],
                         help='Parenthesis model')
+    parser.add_argument('test_path', type=str, help="Path to the test data", default="")
+
     parser.add_argument('-np', '--no_pos_encodings', action='store_true',
                         help="Train GPT-2 with no positional encodings")
+
 
     # Get args
     args = parser.parse_args()
@@ -116,8 +128,7 @@ if __name__ == "__main__":
     model_path = f"{CHECKPOINT_READ_PATH}/babylm_{args.perturbation_type}_{args.train_set}_{args.paren_model}{no_pos_encodings_underscore}/{model}/runs/{model}/checkpoint-"
 
     # Get perturbed test files
-    test_files = sorted(glob(
-        f"{BABYLM_DATA_PATH}/babylm_data_perturbed/babylm_{args.test_perturbation_type}/babylm_test_affected/*"))
+    test_files = sorted(glob(f"{args.test_path}/*"))
 
     FILE_SAMPLE_SIZE = 1000
     rng = default_rng(args.random_seed)
@@ -128,10 +139,21 @@ if __name__ == "__main__":
     for test_file in test_files:
         print(test_file)
 
-        # Get tokens from test file and subsample
-        f = open(test_file, 'r')
-        file_token_sequences = [
-            [int(s) for s in l.split()] for l in f.readlines()]
+        # # Get tokens from test file and subsample
+        # f = open(test_file, 'r')
+
+        # file_token_sequences = [
+        #     [int(s) for s in l.split()] for l in f.readlines()]
+
+        with open(test_file, 'r', encoding='utf-8') as f:
+            file_token_sequences = []
+            for line in f:
+                line = line.strip()
+                if line:
+                    tokens = gpt2_original_tokenizer.encode(line, add_special_tokens=False)
+                    file_token_sequences.append(tokens)
+
+
         sample_indices = rng.choice(
             list(range(len(file_token_sequences))), FILE_SAMPLE_SIZE, replace=False)
         file_token_sequences = [file_token_sequences[i]
@@ -154,10 +176,9 @@ if __name__ == "__main__":
         # Load model
         if args.no_pos_encodings:
             model = GPT2NoPositionalEncodingLMHeadModel.from_pretrained(
-                model_path + str(ckpt)).to(device)
+                model_path + str(ckpt), local_files_only=True).to(device)
         else:
-            model = GPT2LMHeadModel.from_pretrained(
-            model_path + str(ckpt)).to(device)
+            model = GPT2LMHeadModel.from_pretrained(model_path + str(ckpt), local_files_only=True).to(device)
 
         # Get perplexities
         perplexities = []
